@@ -7,6 +7,7 @@ export const getListPokemons = createAsyncThunk(
   async (_, {getState}) => {
     try {
       const {pokemons} = getState();
+
       const content = await getPokemons({offset: pokemons.pokemons.length});
       return content.results;
     } catch (error: any) {
@@ -29,7 +30,12 @@ const pokemonsServiceSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(getListPokemons.fulfilled, (state, action) => {
-      state.pokemons = state.pokemons.concat(action.payload);
+      const pokemons = state.pokemons.concat(action.payload);
+      state.pokemons = Array.from(new Set(pokemons.map(obj => obj.name))).map(
+        name => {
+          return pokemons.find(obj => obj.name === name);
+        },
+      );
       state.loading = false;
     });
     builder.addCase(getListPokemons.pending, state => {

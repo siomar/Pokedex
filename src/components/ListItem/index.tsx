@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {Card, Code, Image, Title} from './ListItem.styles';
 
 type Props = {

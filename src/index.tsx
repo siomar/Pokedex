@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home';
 import DetailScreen from './screens/Detail';
 import CapturedScreen from './screens/Captured';
+import SplashScreen from './screens/Splash';
 import {colors} from './styles/theme';
 import {ThemeProvider, DefaultTheme} from 'styled-components';
 import Header from './components/Header';
@@ -19,7 +20,12 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Navigation = () => (
   <NavigationContainer>
     <Error>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Splash">
+        <Stack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Home"
           component={HomeScreen}

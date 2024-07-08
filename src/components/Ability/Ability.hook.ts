@@ -14,7 +14,6 @@ const useAbility = ({ability}: Props): {abilityInfo: any} => {
       const response = await getPokemon({url: ability.ability.url});
       setAbilityInfo(response);
     } catch (error) {
-      console.log('Erro capturado:', error);
       showBoundary(error);
     }
   }
