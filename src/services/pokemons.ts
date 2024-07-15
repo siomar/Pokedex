@@ -20,6 +20,9 @@ export async function getPokemons({
   offset: number;
 }): Promise<GetPokemonsResponse> {
   try {
+    if (offset === 1302) {
+      return {results: []};
+    }
     const response = await fetch(`${URL}?offset=${offset}`, header);
 
     if (!response.ok) {
